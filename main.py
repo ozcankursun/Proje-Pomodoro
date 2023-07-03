@@ -58,6 +58,7 @@ class MainMenuUI(QDialog):
         loadUi("./UI/mainMenu.ui",self)
 
 class PomodoroUI(QDialog):
+    #bu kisim bana ait
     #Yunus (Emre)
     def __init__(self):
         super(PomodoroUI,self).__init__()
