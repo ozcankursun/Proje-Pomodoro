@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/Users/Hp Zbook/Documents/GitHub/Proje-Pomodoro/Proje-Pomodoro/data.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="0"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="1218"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="7" parent="0"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,7:mainproject"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">CREATE TABLE user (
+	user_id_pk integer PRIMARY KEY AUTOINCREMENT,
+	name text,
+	email text,
+	created_at integer
+);
+
+CREATE TABLE project (
+	project_id_pk integer PRIMARY KEY AUTOINCREMENT,
+	user_id_fk integer,
+	project_name text,
+	created_at date
+);
+
+CREATE TABLE subject (
+	subject_id_pk integer PRIMARY KEY AUTOINCREMENT,
+	project_id_fk integer,
+	subject_name text,
+	user_id_fk integer,
+	created_at date
+);
+
+CREATE TABLE session (
+	session_id integer PRIMARY KEY AUTOINCREMENT,
+	task_id_fk integer,
+	start time,
+	finish time,
+	user_id_fk integer,
+	create_date datetime,
+	succes boolean
+);
+
+CREATE TABLE task (
+	task_id_pk integer PRIMARY KEY AUTOINCREMENT,
+	subject_id_fk integer,
+	task_name text,
+	user_id_fk integer,
+	created_at integer,
+	project_id_fk integer
+);
+
+CREATE TABLE summary (
+	summary_id_pk integer PRIMARY KEY AUTOINCREMENT,
+	user_id_fk integer,
+	project_id_fk integer,
+	subject_id_fk integer,
+	signup_time date,
+	total_track_time time,
+	session_id_fk integer
+);
+
+CREATE TABLE recipient (
+	summary_id_fk integer PRIMARY KEY AUTOINCREMENT,
+	email text
+);
+
+
+</sql><current_tab id="0"/></tab_sql></sqlb_project>

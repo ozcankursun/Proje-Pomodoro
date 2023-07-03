@@ -25,19 +25,19 @@ class LoginUI(QDialog):
         if '@' not in email:
             self.errorTextSignUp.setText('Lütfen geçerli bir email adresi giriniz.')            
         else:
-            print('Başarılı bir şekilde  isim:', name, ' ve email:',email, ' ile kayıt olundu')
+            print('Başarılı bir şekilde  isim:', name, ' ve email:',email, ' ile kayıt olundu.')
         
     def go_main_menu(self):
         user = self.emailInputLogin.text()
         if len(user)==0 or '@' not in user :
             self.errorTextLogin.setText('Lütfen geçerli bir email adresi giriniz.')
         else:
-            #conn= sqlite3.connect('data.db')
-            #curr= conn.cursor()
-            #query = 'SELECT email from ....'
-            #curr.execute(query)
-            #result_email= curr.fetchone()[0]
-            #if result_email == email:
+            # conn= sqlite3.connect('data.db')
+            # curr= conn.cursor()
+            # query = 'SELECT email from user '
+            # curr.execute(query)
+            # result_email= curr.fetchone()
+            # if result_email == user:
             if user=='ozcankursun@gmail.com':
                 print('Başarılı bir şekilde giriş yapıldı.')
                 main_menu = MainMenuUI()
