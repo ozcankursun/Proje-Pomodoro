@@ -17,16 +17,24 @@ class LoginUI(QDialog):
         # This is example of changing screen
         self.loginButton.clicked.connect(self.go_main_menu)
         
-        
+     
     def createuserfunc(self):
         name = self.nameInputSignUp.text()
         email = self.emailInputSignUp.text()
         
-        if '@' not in email:
+        if '@' not in email or name =='' or email =='':
             self.errorTextSignUp.setText('Lütfen geçerli bir email adresi giriniz.')            
-        else:
-            print('Başarılı bir şekilde  isim:', name, ' ve email:',email, ' ile kayıt olundu.')
-        
+        else:        
+            conn= sqlite3.connect('./data.db')
+            curr= conn.cursor() 
+            curr.execute('SELECT email FROM user WHERE email =?',(email))   
+            if curr.fetchone() is not None:
+                self.errorTextSignUp.setText('Bu email adresi daha once alinmis.')
+            else:
+                curr.execute('INSERT INTO user (name, email) VALUES (?,?)',(name, email))
+                conn.commit()
+                print('Hesap olusturuldu')
+            
     def go_main_menu(self):
         user = self.emailInputLogin.text()
         if len(user)==0 or '@' not in user :
@@ -48,9 +56,6 @@ class LoginUI(QDialog):
                self.errorTextLogin.setText('Bir hesabınız yoksa kayıt olunuz.')
             
            
-                
-        
-
 class MainMenuUI(QDialog):
     #Bunu yapacagiz (Ozcan)
     def __init__(self):
