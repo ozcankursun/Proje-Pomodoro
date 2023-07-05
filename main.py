@@ -10,6 +10,7 @@ from PyQt5.QtWidgets import QDialog, QApplication
 from PyQt5.uic import loadUi
 
 class LoginUI(QDialog):
+    
     def __init__(self):
         super(LoginUI,self).__init__()
         loadUi("./UI/login.ui",self)
@@ -19,42 +20,40 @@ class LoginUI(QDialog):
         
      
     def createuserfunc(self):
+        conn= sqlite3.connect('./data.db')
+        curr= conn.cursor()   
+        #name ve email adresleri kullanicidan alinir ve bir degiskene atanir
         name = self.nameInputSignUp.text()
         email = self.emailInputSignUp.text()
-        
         if '@' not in email or name =='' or email =='':
             self.errorTextSignUp.setText('Lütfen geçerli bir email adresi giriniz.')            
-        else:        
-            conn= sqlite3.connect('./data.db')
-            curr= conn.cursor() 
-            curr.execute('SELECT email FROM user WHERE email =?',(email))   
+        else:                   
+            curr.execute('SELECT email FROM User WHERE email =?',(email,))   
             if curr.fetchone() is not None:
                 self.errorTextSignUp.setText('Bu email adresi daha once alinmis.')
             else:
-                curr.execute('INSERT INTO user (name, email) VALUES (?,?)',(name, email))
+                curr.execute('INSERT INTO User (Name, Email) VALUES (?,?)',(name, email))
                 conn.commit()
                 print('Hesap olusturuldu')
             
     def go_main_menu(self):
-        user = self.emailInputLogin.text()
-        if len(user)==0 or '@' not in user :
-            self.errorTextLogin.setText('Lütfen geçerli bir email adresi giriniz.')
-        else:
-            # conn= sqlite3.connect('data.db')
-            # curr= conn.cursor()
-            # query = 'SELECT email from user '
-            # curr.execute(query)
-            # result_email= curr.fetchone()
-            # if result_email == user:
-            if user=='ozcankursun@gmail.com':
+        conn= sqlite3.connect('data.db')
+        curr= conn.cursor()
+        userx = self.emailInputLogin.text()
+        if len(userx)!=0:
+            curr.execute('SELECT COUNT(*) FROM User WHERE email =?',(userx,))   
+            count= curr.fetchone()[0]
+            curr.close()
+            conn.close()         
+            if count > 0:
                 print('Başarılı bir şekilde giriş yapıldı.')
                 main_menu = MainMenuUI()
                 widget.addWidget(main_menu)
                 widget.setCurrentIndex(widget.currentIndex()+1)
-                
-            else:
-               self.errorTextLogin.setText('Bir hesabınız yoksa kayıt olunuz.')
-            
+            else: 
+                self.errorTextLogin.setText('Bir hesabınız yoksa kayıt olunuz.')
+        else:
+            self.errorTextLogin.setText('Lütfen geçerli bir email adresi giriniz.')  
            
 class MainMenuUI(QDialog):
     #Bunu yapacagiz (Ozcan)
