@@ -60,6 +60,49 @@ class MainMenuUI(QDialog):
     def __init__(self):
         super(MainMenuUI,self).__init__()
         loadUi("./UI/mainMenu.ui",self)
+        self.addProjectButton.clicked.connect(self.addProject)
+        self.addSubjectButton.clicked.connect(self.addSubject)
+        self.errorTextProjectLabel.setText('')
+        self.errorTextSubjectLabel.setText('')
+        
+        
+    def addProject(self):
+        conn= sqlite3.connect('data.db')
+        curr= conn.cursor()
+        project_name= self.addProjectInput.text()
+        # Veritabanında proje adını sorgulama
+        curr.execute("SELECT * FROM project WHERE project_name=?",(project_name,))
+        result = curr.fetchone()
+        
+        if result is not None:
+            self.errorTextProjectLabel.setText('Bu proje veritabanında mevcut.')
+        else:
+            # Proje bilgilerini veritabanına ekliyor.
+            curr.execute("INSERT INTO project (project_name) VALUES (?)", (project_name,))
+            conn.commit()
+            self.errorTextProjectLabel.setText('Proje veritabanına eklendi.')
+        # Veritabanı bağlantısını kapat
+        conn.close()
+        
+        
+    def addSubject(self):
+        conn= sqlite3.connect('data.db')
+        curr= conn.cursor()
+        subject_name= self.addSubjectInput.text()
+        # Veritabanında proje adını sorgulama
+        curr.execute("SELECT * FROM subject WHERE subject_name=?",(subject_name,))
+        result = curr.fetchone()
+        
+        if result is not None:
+            self.errorTextSubjectLabel.setText('Bu subject veritabanında mevcut.')
+        else:
+            # Proje bilgilerini veritabanına ekliyor.
+            curr.execute("INSERT INTO subject (subject_name) VALUES (?)", (subject_name,))
+            conn.commit()
+            self.errorTextSubjectLabel.setText('Subject veritabanına eklendi.')
+        # Veritabanı bağlantısını kapat
+        conn.close()
+            
 
 class PomodoroUI(QDialog):
     #bu kisim bana ait
