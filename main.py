@@ -8,6 +8,7 @@ import sys
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication
 from PyQt5.uic import loadUi
+from PyQt5.QtCore import QTimer
 
 class LoginUI(QDialog):
     
@@ -105,17 +106,84 @@ class MainMenuUI(QDialog):
             
 
 class PomodoroUI(QDialog):
-    #bu kisim bana ait
+    # kodlar neredeyse hazir
     #Yunus (Emre)
     def __init__(self):
         super(PomodoroUI,self).__init__()
         loadUi("./UI/pomodoro.ui",self)
+        #self.taskInput.clicked.connect(self.taskInputClicked)
+        # self.addTask.clicked.connect(self.addData) # !!!!!!!!!
+        # self.doneButton.clicked.connect(self.succes)
+        # self.labelAsNotFinishedButton.clicked.connect(self.fail)
+        # self.goToMainMenuButton.clicked.connect(self.go_main_menu)
+        self.startStopButton.clicked.connect(self.startTimer)
+
+        self.timer = QTimer()
+        self.timer.setInterval(1000)  # Her bir saniye için tetikleme
+        self.timer.timeout.connect(self.updateTime)
+        self.remainingTime = 25 * 60  # Başlangıçta 25 dakika
+
+        #def taskInputClicked(self): #!!!!!!!
+        #task = self.taskInput.text()
+
+
+
+    #def addData(self):
+    #     conn = sqlite3.connect('./data.db')
+    #     curr = conn.cursor()
+    
+    #     # Kullanicinin girdigi task 'task' degiskenine atanir
+    #     task = self.taskInput.text()
+
+    #     # database'e ekleme islemi
+    #     curr.execute("INSERT INTO tasks (task_name) VALUES (?)", (task,))
+    
+    #     # deigisklikler kaydedilip baglanti kapatilir
+    #     conn.commit()
+    #     conn.close()
+
+
+    # def succes(self):
+    #     conn = sqlite3.connect("database.db")
+    #     cursor = conn.cursor()
+    #     veri = True
+    #     cursor.execute("INSERT INTO session (succes) VALUES (?)", (veri,))
+    #     conn.commit()
+    #     conn.close()
+
+    # def fail(self):
+    #     conn = sqlite3.connect("database.db")
+    #     cursor = conn.cursor()
+    #     veri = False
+    #     cursor.execute("INSERT INTO session (succes) VALUES (?)", (veri,))
+    #     conn.commit()
+    #     conn.close()
+
+    def startTimer(self):
+        self.timer.start()
+        
+    def updateTime(self):
+        self.remainingTime -= 1
+        minutes = self.remainingTime // 60
+        seconds = self.remainingTime % 60
+        self.timeLabel.setText(f"{minutes:02d}:{seconds:02d}")
+        
+        if self.remainingTime == 0:
+            self.timer.stop()
+            print("Bolum tamamlandi.")
 
 
 class ShortBreakUI(QDialog):
     def __init__(self):
         super(ShortBreakUI,self).__init__()
         loadUi("./UI/shortBreak.ui",self)
+        self.goToMainMenuButton.clicked.connect(self.go_main_menu)
+        self.startButton.clicked.connect(self.startTimer)
+
+        self.timer = QTimer()
+        self.timer.setInterval(1000)  # Her bir saniye için tetikleme
+        self.timer.timeout.connect(self.updateTime)
+        self.remainingTime = 5 * 60  # 5 dakika olmasi icin
 
 class LongBreakUI(QDialog):
     def __init__(self):
@@ -124,7 +192,7 @@ class LongBreakUI(QDialog):
 
 
 app = QApplication(sys.argv)
-UI = LoginUI() # This line determines which screen you will load at first
+UI = PomodoroUI() # This line determines which screen you will load at first
 
 # You can also try one of other screens to see them.
     # UI = MainMenuUI()
