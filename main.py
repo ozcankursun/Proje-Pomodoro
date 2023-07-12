@@ -75,6 +75,7 @@ class MainMenuUI(QDialog):
         # self.sendEmailThisSummaryButton.clicked.connect(self.sendEmailThisSummary)
         self.errorTextProjectLabel.setText('')
         self.errorTextSubjectLabel.setText('')
+        self.startPomodoroButton.clicked.connect(self.startPomodoro)
         conn= sqlite3.connect('data.db')
         curr= conn.cursor()
         curr.execute("SELECT project_name FROM Project WHERE user_id_fk = (SELECT user_id_pk FROM User WHERE email = ?)", (LoginUI.userx,)
@@ -83,7 +84,9 @@ class MainMenuUI(QDialog):
         result2=list(result)
         for re in result2:
             self.addSubjectOnProjectCombo.addItem(re[0])
-            
+            self.projectDeleteCombo.addItem(re[0])
+            self.showSummaryProjectCombo.addItem(re[0])
+            self.selectProjectCombo.addItem(re[0])
         
     # def showSummary(self):
     #     conn= sqlite3.connect('data.db')  
@@ -112,44 +115,68 @@ class MainMenuUI(QDialog):
         curr.execute("SELECT * FROM Project WHERE project_name=?",(self.project_name,))
         result = curr.fetchone()
         
-        if result is not None:
-            self.errorTextProjectLabel.setText('Bu proje veritabanında mevcut.')
+        if len(self.project_name)==0:
+            self.errorTextProjectLabel.setText('Bir project giriniz.')
         else:
-            # Proje bilgilerini veritabanına ekliyor.
-            curr.execute("SELECT user_id_pk FROM User WHERE email = ?",(LoginUI.userx,))
-            
-            self.emails= curr.fetchone()[0]
-            #son= curr.execute(user_id_fk)
-            curr.execute("INSERT INTO Project (project_name, user_id_fk) VALUES (?,?)", (self.project_name, self.emails ))
-            
-            conn.commit()
-            
-            self.addSubjectOnProjectCombo.addItem(self.project_name)
-            self.errorTextProjectLabel.setText('Proje veritabanına eklendi.')
+            if result is not None:
+                self.errorTextProjectLabel.setText('Bu proje veritabanında mevcut.')
+            else:
+                # Proje bilgilerini veritabanına ekliyor.
+                curr.execute("SELECT user_id_pk FROM User WHERE email = ?",(LoginUI.userx,))
+                
+                self.emails= curr.fetchone()[0]
+                #son= curr.execute(user_id_fk)
+                curr.execute("INSERT INTO Project (project_name, user_id_fk) VALUES (?,?)", (self.project_name, self.emails ))
+                
+                conn.commit()
+                
+                self.addSubjectOnProjectCombo.addItem(self.project_name)
+                self.projectDeleteCombo.addItem(self.project_name)
+                self.showSummaryProjectCombo.addItem(self.project_name)
+                self.selectProjectCombo.addItem(self.project_name)
+                self.errorTextProjectLabel.setText('Proje veritabanına eklendi.')
         # Veritabanı bağlantısını kapat
         conn.close()
+    
         
         
     def addSubject(self):
         conn= sqlite3.connect('data.db')
         curr= conn.cursor()
-        subject_name= self.addSubjectInput.text()
+        self.subject_name= self.addSubjectInput.text()
+        MainMenuUI.subject_name=self.subject_name
         # Veritabanında proje adını sorgulama
-        curr.execute("SELECT * FROM Subject WHERE subject_name=?",(subject_name,))
+        curr.execute("SELECT * FROM Subject WHERE subject_name=?",(self.subject_name,))
         result = curr.fetchone()
         
-        if result is not None:
-            self.errorTextSubjectLabel.setText('Bu subject veritabanında mevcut.')
+        if len(self.subject_name)==0:
+            self.errorTextSubjectLabel.setText('Bir subject giriniz.')
         else:
-            # Proje bilgilerini veritabanına ekliyor.
-            #curr.execute("SELECT project_id_pk FROM Project WHERE project = ?",(userx,))
-            #project= curr.fetchone()
-            curr.execute("INSERT INTO Subject (project_id_fk,user_id_fk,subject_name) VALUES (?,?,?)", (self.emails,subject_name,))
-            conn.commit()
-            self.errorTextSubjectLabel.setText('Subject veritabanına eklendi.')
+            if result is not None:
+                self.errorTextSubjectLabel.setText('Bu subject veritabanında mevcut.')
+            else:
+                # Proje bilgilerini veritabanına ekliyor.
+                #curr.execute("SELECT project_id_pk FROM Project WHERE project = ?",(userx,))
+                #project= curr.fetchone()
+                curr.execute("SELECT user_id_pk FROM User WHERE email = ?",(LoginUI.userx,))
+                
+                self.emails= curr.fetchone()[0]
+                
+                curr.execute("SELECT project_id_pk FROM Project WHERE email = ?",(LoginUI.userx,))
+                
+                self.emails2= curr.fetchone()[0]
+                
+                curr.execute("INSERT INTO Subject (project_id_fk,user_id_fk,subject_name) VALUES (?,?,?)", (self.emails, self.emails2, self.subject_name,))
+                conn.commit()
+                self.errorTextSubjectLabel.setText('Subject veritabanına eklendi.')
         # Veritabanı bağlantısını kapat
         conn.close()
-            
+    
+    def startPomodoro(self):
+        pomodoro_menu= PomodoroUI()
+        widget.addWidget(pomodoro_menu)
+        widget.setCurrentIndex(widget.currentIndex()+1)     
+        
 
 class PomodoroUI(QDialog):
     # kodlar neredeyse hazir
