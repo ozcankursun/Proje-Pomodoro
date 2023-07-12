@@ -130,7 +130,6 @@ color:rgb(255, 255, 255);</string>
        <font>
         <family>Chalkboard</family>
         <pointsize>12</pointsize>
-        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -157,21 +156,6 @@ color:rgb(255, 255, 255);</string>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
-      <item>
-       <property name="text">
-        <string>project01</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>project02</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>project03</string>
-       </property>
-      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="subjectDeleteWidget" native="true">
@@ -228,7 +212,6 @@ color:rgb(255, 255, 255);</string>
        <font>
         <family>Chalkboard</family>
         <pointsize>12</pointsize>
-        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -326,7 +309,6 @@ color:rgb(255, 255, 255);</string>
        <font>
         <family>Chalkboard</family>
         <pointsize>13</pointsize>
-        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -512,7 +494,6 @@ border-radius:30px;
        <font>
         <family>Chalkboard</family>
         <pointsize>13</pointsize>
-        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -625,7 +606,6 @@ border-radius:20px;
        <font>
         <family>Chalkboard</family>
         <pointsize>12</pointsize>
-        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -666,7 +646,6 @@ border-radius:20px;
        <font>
         <family>Chalkboard</family>
         <pointsize>12</pointsize>
-        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -875,26 +854,6 @@ border-radius:40px;
       <property name="styleSheet">
        <string notr="true"/>
       </property>
-      <item>
-       <property name="text">
-        <string>All</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>project01</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>project02</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>project03</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLabel" name="showSummaryProjectText">
       <property name="geometry">
@@ -909,7 +868,6 @@ border-radius:40px;
        <font>
         <family>Chalkboard</family>
         <pointsize>11</pointsize>
-        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -1135,7 +1093,6 @@ border-radius:0px;
        <font>
         <family>Chalkboard</family>
         <pointsize>13</pointsize>
-        <weight>50</weight>
         <italic>false</italic>
         <bold>false</bold>
        </font>
