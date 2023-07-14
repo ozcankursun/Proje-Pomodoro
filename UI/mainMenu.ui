@@ -130,6 +130,7 @@ color:rgb(255, 255, 255);</string>
        <font>
         <family>Chalkboard</family>
         <pointsize>12</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -212,6 +213,7 @@ color:rgb(255, 255, 255);</string>
        <font>
         <family>Chalkboard</family>
         <pointsize>12</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -238,21 +240,6 @@ color:rgb(255, 255, 255);</string>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
-      <item>
-       <property name="text">
-        <string>subject01</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>subject02</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>subject03</string>
-       </property>
-      </item>
      </widget>
     </widget>
     <widget class="QWidget" name="recipientsWidget" native="true">
@@ -309,6 +296,7 @@ color:rgb(255, 255, 255);</string>
        <font>
         <family>Chalkboard</family>
         <pointsize>13</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -335,21 +323,6 @@ color:rgb(255, 255, 255);</string>
       <property name="styleSheet">
        <string notr="true"/>
       </property>
-      <item>
-       <property name="text">
-        <string>bahadir_friend@mail.com</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>bahadir_parent@mail.com</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>bahadir_boss@mail.com</string>
-       </property>
-      </item>
      </widget>
      <widget class="QLineEdit" name="addRecipientInput">
       <property name="geometry">
@@ -412,7 +385,7 @@ color:rgb(255, 255, 255);</string>
 color:red;</string>
       </property>
       <property name="text">
-       <string>error text</string>
+       <string/>
       </property>
      </widget>
     </widget>
@@ -494,6 +467,7 @@ border-radius:30px;
        <font>
         <family>Chalkboard</family>
         <pointsize>13</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -572,7 +546,7 @@ color:rgb(255, 255, 255);</string>
 color:black;</string>
       </property>
       <property name="text">
-       <string>error text</string>
+       <string/>
       </property>
      </widget>
     </widget>
@@ -606,6 +580,7 @@ border-radius:20px;
        <font>
         <family>Chalkboard</family>
         <pointsize>12</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -646,6 +621,7 @@ border-radius:20px;
        <font>
         <family>Chalkboard</family>
         <pointsize>12</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -789,7 +765,7 @@ color:rgb(255, 255, 255);</string>
 color:black;</string>
       </property>
       <property name="text">
-       <string>error text</string>
+       <string/>
       </property>
      </widget>
     </widget>
@@ -868,6 +844,7 @@ border-radius:40px;
        <font>
         <family>Chalkboard</family>
         <pointsize>11</pointsize>
+        <weight>50</weight>
         <bold>false</bold>
         <underline>false</underline>
        </font>
@@ -946,26 +923,6 @@ border-radius:40px;
       <property name="styleSheet">
        <string notr="true"/>
       </property>
-      <item>
-       <property name="text">
-        <string>All</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Subject01</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Subject02</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>Subject03</string>
-       </property>
-      </item>
      </widget>
      <widget class="QComboBox" name="showSummaryPeriodCombo">
       <property name="geometry">
@@ -1093,6 +1050,7 @@ border-radius:0px;
        <font>
         <family>Chalkboard</family>
         <pointsize>13</pointsize>
+        <weight>50</weight>
         <italic>false</italic>
         <bold>false</bold>
        </font>

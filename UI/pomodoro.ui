@@ -90,6 +90,7 @@ border-radius:30px;
       <font>
        <family>Chalkboard</family>
        <pointsize>12</pointsize>
+       <weight>50</weight>
        <bold>false</bold>
        <underline>false</underline>
       </font>
@@ -162,6 +163,7 @@ color:rgb(255, 255, 255);</string>
       <font>
        <family>Chalkboard</family>
        <pointsize>12</pointsize>
+       <weight>50</weight>
        <bold>false</bold>
        <underline>false</underline>
       </font>
@@ -188,6 +190,11 @@ color:rgb(255, 255, 255);</string>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
+     <item>
+      <property name="text">
+       <string>Task 1</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QLabel" name="pomodoroSession">
@@ -320,6 +327,7 @@ border-radius:30px;
       <font>
        <family>Chalkboard</family>
        <pointsize>14</pointsize>
+       <weight>50</weight>
        <bold>false</bold>
        <underline>false</underline>
       </font>
@@ -373,6 +381,11 @@ color:rgb(255, 255, 255);</string>
      <property name="styleSheet">
       <string notr="true"/>
      </property>
+     <item>
+      <property name="text">
+       <string>Task 1</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QPushButton" name="goToMainMenuButton">
